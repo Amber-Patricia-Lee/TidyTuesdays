@@ -1,0 +1,129 @@
+---
+title: "transit costs 1-05"
+author: "Amber Lee"
+date: "1/5/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r packages}
+library(tidytuesdayR)
+library(tidyverse)
+library(countrycode)
+```
+
+```{r load data}
+tuesdata <- tidytuesdayR::tt_load('2021-01-05')
+transit_cost <- tuesdata$transit_cost
+```
+
+# exploration
+
+```{r region}
+
+# trying out countrycode package
+
+transit_cost <- transit_cost %>%
+  mutate(region = countrycode(country, origin = "ecb", 
+                                    destination = "region")) %>%
+  mutate(region = case_when(country == "UK" ~ "Europe & Central Asia",
+                            TRUE ~ region))
+
+```
+
+variables to make numeric:
+start_year, end_year
+real_cost
+tunnel_per
+
+```{r}
+
+transit_cost <- transit_cost %>%
+  mutate(start_year = as.numeric(start_year),
+         end_year = as.numeric(end_year),
+         diff_year = end_year - start_year,
+         real_cost = as.numeric(real_cost),
+         tunnel_per = as.numeric(str_remove(tunnel_per, "%"))) 
+
+```
+
+
+```{r}
+
+ggplot(data = transit_cost, aes(x = diff_year, fill = region)) +
+  geom_histogram(bins = 15) +
+  facet_wrap(~ region) +
+  labs(title = "length of projects")
+
+transit_cost %>%
+  filter(is.na(diff_year)) %>%
+  select(start_year, end_year, diff_year) 
+
+# NAs are from projects that are still in construction or start year not known
+```
+
+
+```{r}
+transit_cost %>%
+  filter(!is.na(region)) %>%
+  ggplot(aes(x = real_cost, fill = region)) +
+  geom_histogram() +
+  facet_wrap(~ region) +
+  labs(title = "cost of projects") +
+  # scale to see distribution better, about a dozen observations excluded
+  scale_x_continuous(limits = c(0, 50000),
+                     breaks = c(0, 20000, 40000))
+
+```
+
+```{r}
+
+ggplot(transit_cost, aes(x = cost_km_millions, fill = region)) +
+  geom_histogram() +
+  facet_wrap(~ region) +
+  # scale to see distribution better, about a dozen observations excluded
+  scale_x_continuous(limits = c(0, 2000))
+
+```
+
+```{r}
+
+transit_cost %>%
+  filter(!is.na(country) & diff_year < 15 & 
+           real_cost < 50000 & length < 100) %>%
+  ggplot(aes(x = length, y = real_cost)) +
+  geom_point(aes(color = diff_year)) +
+  facet_wrap(~ region)
+
+transit_cost %>%
+  filter(!is.na(country)) %>%
+  ggplot(aes(x = length, y = cost_km_millions)) +
+  geom_point(aes(color = diff_year)) +
+  facet_wrap(~ region) +
+  scale_x_continuous(limits = c(0, 100)) 
+
+```
+
+```{r}
+
+reg_transit_cost <- transit_cost %>%
+  group_by(region, city) %>%
+  summarize(count = n(),
+            avg_length = mean(length),
+            avg_real_cost = mean(real_cost),
+            avg_kmpermil = mean(cost_km_millions),
+            avg_diff = mean(diff_year))
+
+transit_cost %>%
+  group_by(region) %>%
+  summarize(count = n(),
+            avg_length = mean(length),
+            avg_real_cost = mean(real_cost),
+            avg_kmpermil = mean(cost_km_millions),
+            avg_diff = mean(diff_year)) %>%
+  ggplot(aes(x = count, y = avg_length)) +
+```
+
