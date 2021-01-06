@@ -125,5 +125,6 @@ transit_cost %>%
             avg_kmpermil = mean(cost_km_millions),
             avg_diff = mean(diff_year)) %>%
   ggplot(aes(x = count, y = avg_length)) +
+  geom_point()
 ```
 
