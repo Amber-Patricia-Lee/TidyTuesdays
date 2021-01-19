@@ -1,0 +1,11 @@
+"0","tm_shape(topcrops_sf) + 
+  tm_polygons(col = ""cropType"", alpha = ""alpha"") +
+  tm_layout(title = ""Most grown crop per county in Kenya"",
+            title.size = 1,
+            title.position = c(""left"", ""top""),
+            legend.title.size = 0.8,
+            legend.title.fontface = ""bold"",
+            inner.margins = c(0.1, 0.1, 0.1, 0.1))
+"
+"2","Error: alpha argument in tm_XXX is not a numeric
+"

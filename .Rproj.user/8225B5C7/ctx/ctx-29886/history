@@ -1,0 +1,512 @@
+ggplot() +
+geom_histogram(aes(x = count))
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat_identity = TRUE)
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count, stat_identity = TRUE))
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count, stat_count = "identity"))
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count))
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count)) +
+stat_identity()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count, stat = "identity"))
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity")
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100) %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100 & countryBirth != "United Kingdom") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 10 & countryBirth != "United Kingdom") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 100 & countryBirth != "United Kingdom") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+arrange(-count)
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+select(countryBirth, count) %>%
+arrange(-count) %>%
+head()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+distinct(countryBirth, count)%>%
+arrange(-count) %>%
+head()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+distinct(countryBirth, count)%>%
+arrange(-count) %>%
+head(10)
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 10 & countryBirth != "United Kingdom" &
+countryBirth != "United States") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+distinct(countryBirth, count)%>%
+arrange(-count) %>%
+head(10)
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States" &
+countryBirth != "Deutschland") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip()
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States" &
+countryBirth != "Deutschland") %>%
+ungroup() %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip() +
+labs(title = "number of artworks from lesser-represented countries",
+subtitle = "removing UK, uS, and Germany")
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States" &
+countryBirth != "Deutschland") %>%
+ungroup() %>%
+distinct(countryBirth, count) %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip() +
+labs(title = "number of artworks from lesser-represented countries",
+subtitle = "removing UK, US, and Germany")
+artwork_places %>%
+group_by(countryBirth) %>%
+mutate(count = n()) %>%
+distinct(countryBirth, count) %>%
+arrange(-count) %>%
+head(10)
+artist_places
+artist_places %>%
+filter(countryBirth == countryDeath)
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n())
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n())
+artist_places %>%
+filter(countryBirth != countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n())
+artwork_places %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+filter(count > 50 & countryBirth != "United Kingdom" &
+countryBirth != "United States" &
+countryBirth != "Deutschland") %>%
+ggplot() +
+geom_bar(aes(x = countryBirth, y = count), stat = "identity") +
+coord_flip() +
+labs(title = "number of artworks from lesser-represented countries",
+subtitle = "removing UK, US, and Germany")
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count)
+artist_places %>%
+filter(countryBirth != countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count)
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count) %>%
+ggplot(aes(x = countryBirth, y = count)) +
+geom_bar(stat = "identity")
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count) %>%
+ggplot(aes(x = countryBirth, y = count)) +
+geom_bar(stat = "identity") + coord_flip()
+artist_places %>%
+filter(countryBirth != countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count) %>%
+ggplot(aes(x = countryBirth, y = count)) +
+geom_bar(stat = "identity") + coord_flip()
+artist_places %>%
+filter(countryBirth == countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count) %>%
+ggplot(aes(x = countryBirth, y = count)) +
+geom_bar(stat = "identity") + coord_flip()
+artist_places %>%
+filter(countryBirth != countryDeath) %>%
+group_by(countryBirth) %>%
+summarize(count = n()) %>%
+arrange(-count) %>%
+ggplot(aes(x = countryBirth, y = count)) +
+geom_bar(stat = "identity") + coord_flip()
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE))
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n())
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count)
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0)
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(rate_same = samecountry/(differentcountry + samecountry + `<NA>`))
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(rate_same = samecountry/
+(differentcountry + samecountry + `<NA>`)) %>%
+ggplot(aes(x = countryBirth, y = rate_same))
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(rate_same = samecountry/
+(differentcountry + samecountry + `<NA>`)) %>%
+ggplot(aes(x = countryBirth, y = rate_same)) +
+geom_point()
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(rate_same = samecountry/
+(differentcountry + samecountry + `<NA>`)) %>%
+ggplot(aes(x = samecountry, y = rate_same, fill = `<NA>`)) +
+geom_bar(stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(rate_same = samecountry/
+(differentcountry + samecountry + `<NA>`)) %>%
+ggplot(aes(x = countryBirth, y = rate_same, fill = `<NA>`)) +
+geom_bar(stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(total = differentcountry + samecountry + `<NA>`,
+rate_same = samecountry / total,
+rate_NA = `<NA>` / total) %>%
+ggplot(aes(x = rate_same, y = rate_NA, fill = `<NA>`)) +
+geom_point(stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(total = differentcountry + samecountry + `<NA>`,
+rate_same = samecountry / total,
+rate_NA = `<NA>` / total) %>%
+ggplot(aes(x = rate_same, y = rate_NA, color = `<NA>`)) +
+geom_point(stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(total = differentcountry + samecountry + `<NA>`,
+rate_same = samecountry / total,
+rate_NA = `<NA>` / total) %>%
+ggplot(aes(x = countryBirth, y = rate_same, fill = rate_NA)) +
+geom_bar(stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+spread(key = samecountry, value = count, fill = 0) %>%
+rename(differentcountry = `FALSE`,
+samecountry = `TRUE`) %>%
+filter(differentcountry > 0 & samecountry > 0) %>%
+mutate(total = differentcountry + samecountry + `<NA>`,
+rate_same = samecountry / total,
+rate_NA = `<NA>` / total) %>%
+ggplot(aes(x = countryBirth, y = rate_same, fill = rate_NA)) +
+geom_bar(stat = "identity") +
+coord_flip()
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n())
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+filter(count > 1)
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+filter(count > 1) %>%
+ggplot(aes(x = countryBirth, y = count, fill = samecountry)) +
+geom_bar(position = "fill", stat = "identity")
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+filter(count > 1) %>%
+ggplot(aes(x = countryBirth, y = count, fill = samecountry)) +
+geom_bar(position = "fill", stat = "identity") +
+coord_flip()
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+filter(count > 3) %>%
+ggplot(aes(x = countryBirth, y = count, fill = samecountry)) +
+geom_bar(position = "fill", stat = "identity") +
+coord_flip()
+artist_places %>%
+mutate(samecountry = case_when(countryBirth == countryDeath ~ TRUE,
+countryBirth != countryDeath ~ FALSE)) %>%
+group_by(countryBirth, samecountry) %>%
+summarize(count = n()) %>%
+filter(count > 5) %>%
+ggplot(aes(x = countryBirth, y = count, fill = samecountry)) +
+geom_bar(position = "fill", stat = "identity") +
+coord_flip()
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidytuesdayR)
+library(tidyverse)
+tuesdata <- tidytuesdayR::tt_load('2021-01-19')
+tuesdata
+gender <- tuesdata$gender
+crops <- tuesdata$crops
+households <- tuesdata$households
+crops
+households
+remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+install.packages("remotes")
+# install.packages("remotes")
+remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+?V_4T2.9c
+?V1_T2.2
+# install.packages("remotes")
+# remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+library(rKentaCensus)
+# install.packages("remotes")
+# remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+library(rKenyaCensus)
+?V4_T2.9c
+data(rKenyaCensus)
+rKenyaCensus
+?rKenyaCensus
+??rKenyaCensus
+# install.packages("remotes")
+# remotes::install_github("Shelmith-Kariuki/rKenyaCensus")
+library(rKenyaCensus)
+data()
+rKenyaCensus::KenyaCounties_SHP
+counties <- rKenyaCensus::KenyaCounties_SHP
+typeof(counties)
+tuesdata
+internet <- rKenyaCensus::V4_T2.33
+internet
+?V4_T2.33
+counties %>% head()
+internet <- rKenyaCensus::V4_T2.33 %>%
+filter(AdminArea == "County")
+internet
+internet <- rKenyaCensus::V4_T2.33 %>%
+filter(AdminArea == "County") %>%
+select(-SubCounty)
+internet
+internet <- rKenyaCensus::V4_T2.33 %>%
+filter(AdminArea == "County") %>%
+select(-SubCounty, -AdminArea)
+internet
+# data(package = "rKenyaCensus")
+library(tmap)
+# data(package = "rKenyaCensus")
+install.packages("tmap")
+library(tmap)
+library(sf)
+?KenyaCounties_SHP
+st_as_sf(counties)
+counties_sf <- st_as_sf(counties)
+typeof(counties_sf)
+class(counties_sf)
+merge(counties_sf, internet, by = County)
+merge(counties_sf, internet, by = "County")
+internet_sf <- merge(counties_sf, internet, by = "County")
+internet_sf
+plot(internet_sf)
+class(internet_sf)
+internet_sf
+plot(st_geometry(internet_sf))
+internet_sf$geometry
+plot(internet_sf$geometry)
+sf::plot(internet_sf$geometry)
+plot(internet_sf$geometry)
+# need tmaptools and stars package
+install.packages("tmaptools", "stars", "tmap")
+# need tmaptools and stars package
+install.packages("tmaptools", "stars", "tmap")

@@ -12,8 +12,6 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r packages}
 library(tidytuesdayR)
 library(tidyverse)
-library(countrycode)
-
 ```
 
 ```{r load data}

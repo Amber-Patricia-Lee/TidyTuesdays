@@ -1,0 +1,20 @@
+"0","tuesdata <- tidytuesdayR::tt_load('2021-01-19')
+"
+"2","--- Compiling #TidyTuesday Information for 2021-01-19 ----
+"
+"2","--- There are 3 files available ---
+"
+"2","--- Starting Download ---
+"
+"1","
+"
+"1","	Downloading file 1 of 3: `households.csv`
+"
+"1","	Downloading file 2 of 3: `crops.csv`
+"
+"1","	Downloading file 3 of 3: `gender.csv`
+"
+"1","
+"
+"2","--- Download complete ---
+"
